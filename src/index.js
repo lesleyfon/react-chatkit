@@ -14,10 +14,9 @@ const persistedState = localState();
 
 const store = createStore(reducer, persistedState);
 store.subscribe(throttle (()=>{
-    saveState({
-        message: store.getState()
-    })
+    saveState(store.getState())
 }, 1000));
+console.log(store.getState())
 ReactDOM.render(
     <Provider store={store} >
         <Router>
