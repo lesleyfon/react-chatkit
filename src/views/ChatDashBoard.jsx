@@ -13,10 +13,10 @@ function ChatDashBoard({loading}) {
             <Container fluid className={`ld-over ${loading && 'running'}`}>
                 <div className='ld ld-ring ld-spin'></div>
                 <Row>
-                    <Col cols='2'>
+                    <Col cols='2' className='col-2'>
                         <RoomsList />
                     </Col>
-                    <Col cols='8'>
+                    <Col className='col-8'>
                         <Row>
                             <Col id="chat-content">
                                 <MessageList /> 
@@ -28,7 +28,7 @@ function ChatDashBoard({loading}) {
                             </Col>
                         </Row>
                     </Col>
-                    <Col cols='2'>
+                    <Col className='col-2'>
                         <UserList />
                     </Col>
                 </Row>
