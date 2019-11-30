@@ -6,6 +6,7 @@
     "@pusher/chatkit-client": "^1.13.2",
     "axios": "^0.19.0",
     "bootstrap": "^4.4.1",
+    "glamor": "^2.20.40",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "react": "^16.12.0",
