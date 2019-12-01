@@ -11,7 +11,7 @@ function ChatDashBoard({loading}) {
         <div className='chat-dashboard'>
             <ChatNavBar/>
             <Container fluid className={`ld-over ${loading && 'running'}`}>
-                <div className='ld ld-ring ld-spin'></div>
+                {/* <div className='ld ld-ring ld-spin'></div> */}
                 <Row>
                     <Col cols='2' className='col-2'>
                         <RoomsList />

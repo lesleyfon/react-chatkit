@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {createStore, applyMiddleware, combineReducers} from 'redux';
+import {createStore} from 'redux';
 import { Provider} from 'react-redux'
 import {BrowserRouter as Router} from 'react-router-dom'
 import throttle from 'lodash/throttle';
@@ -13,10 +13,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const persistedState = localState();
 
 const store = createStore(reducer, persistedState);
+
 store.subscribe(throttle (()=>{
     saveState(store.getState())
 }, 1000));
-console.log(store.getState())
+
 ReactDOM.render(
     <Provider store={store} >
         <Router>

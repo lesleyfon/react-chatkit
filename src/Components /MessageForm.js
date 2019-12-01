@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Form, Alert, FormGroup, FormControl, Button } from 'react-bootstrap'
 
-function MessageForm({user, error, sending, activeRoom}) {
+function MessageForm({user, error, sending, hasError}) {
     const [messageText, setMessageText] = React.useState('')
 
     const handleChange = e => {
@@ -14,10 +14,9 @@ function MessageForm({user, error, sending, activeRoom}) {
     return (
         <div class="message-form ld-over">
             {user.length > 1 && <small class="text-muted" >{ user.username }</small> }
-            {/*    */}
             <Form onSubmit={handleSubmit} className= {`ld-over ${sending && 'running'}`}>
-                <div class="ld ld-ring ld-spin"></div>
-                <Alert>{error}</Alert>
+                {/* <div class="ld ld-ring ld-spin"></div> */}
+                <Alert variant="danger" show={hasError}>{error}</Alert>
                 <FormGroup>
                     <FormControl  
                         id="message-input"

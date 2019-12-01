@@ -4,21 +4,20 @@ import {connect} from 'react-redux';
 import { css } from 'glamor'
 
 function MessageList({messages}) {
-    const defaultStyles = css({
-        height: '100px',
+    const ROOT_CSS = css({
+        height: '600px',
         width: '100%',
-        background:'red'
     })
     
     return (
         <div class="message-list">
         <h4>Messages</h4>
         <hr/>
-        <ScrollToBottom  id="chat-messages" className={`message-group`}  style={defaultStyles} >
+        <ScrollToBottom  id="chat-messages" className={`message-group ${ROOT_CSS}`}   >
             {messages.length > 1 ? messages.map((message, i)=><div className='message' key={i}>
                 <div className="clearfix">
                     <h4 className="message-title">{ message.name }</h4>
-                    <small className="text-muted float-right">{ message.username }</small>
+                    <small className="text-muted float-right">@{message.username }</small>
                 </div>
                 <p className="message-text">
                     { message.text }
