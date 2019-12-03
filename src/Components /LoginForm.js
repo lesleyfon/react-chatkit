@@ -2,13 +2,11 @@ import React, {useState, useEffect} from 'react';
 import {connect } from 'react-redux'
 import {Form, Alert, Button} from 'react-bootstrap'
 import login  from './../store/actions'
-import {setError as dispatchError} from './../store/index'
 
 
-function LoginForm({error, loading,  dispatchError, login}) {
+function LoginForm({error, loading, login, loggedIn}) {
     const [hasError, setError] = useState(false);
     const [user, setUserName] = useState('');
-    const [userId, setUserId] = useState('');
 
     //checking if the user has typed in a username grater than 3 of length
     useEffect(()=>{
@@ -64,10 +62,11 @@ function LoginForm({error, loading,  dispatchError, login}) {
 }
 
 const mapStateToProps = state =>{
-    
+    console.log(state)
     return {
         loading: state.loading,
         error: state.error,
+        loggedIn : state.loggedIn,
     }
 }
 const mapDispatchToProps = {

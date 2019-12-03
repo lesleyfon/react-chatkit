@@ -1,8 +1,12 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Jumbotron, Button, Container, Row, Col} from 'react-bootstrap'
 import LoginForm from "../Components /LoginForm";
+import { connect } from "react-redux";
 
-function Login() {
+function Login({loggedIn, history}) {
+  useEffect(()=>{
+    history.push('/chat');
+  }, [loggedIn])
   return (
     <div className="login">
       <Jumbotron
@@ -32,4 +36,9 @@ function Login() {
   );
 }
 
-export default Login;
+const mapStateToProps = state =>{
+  return {
+    loggedIn : state.loggedIn,
+  }
+}
+export default connect(mapStateToProps, {})(Login);

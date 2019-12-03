@@ -10,7 +10,7 @@ function MessageList({messages}) {
     })
     
     return (
-        <div class="message-list">
+        <div className="message-list">
         <h4>Messages</h4>
         <hr/>
         <ScrollToBottom  id="chat-messages" className={`message-group ${ROOT_CSS}`}   >

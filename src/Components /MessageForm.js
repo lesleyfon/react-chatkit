@@ -12,8 +12,8 @@ function MessageForm({user, error, sending, hasError}) {
         e.preventDefault()
     }
     return (
-        <div class="message-form ld-over">
-            {user.length > 1 && <small class="text-muted" >{ user.username }</small> }
+        <div className="message-form ld-over">
+            {user.length > 1 && <small className="text-muted" >{ user.username }</small> }
             <Form onSubmit={handleSubmit} className= {`ld-over ${sending && 'running'}`}>
                 {/* <div class="ld ld-ring ld-spin"></div> */}
                 <Alert variant="danger" show={hasError}>{error}</Alert>
@@ -28,7 +28,7 @@ function MessageForm({user, error, sending, hasError}) {
                         autoComplete="off"
                         required
                     />
-                    <div class="clearfix">
+                    <div className="clearfix">
                         <Button type="submit" variant="primary" className="float-right">
                         Send
                         </Button>
