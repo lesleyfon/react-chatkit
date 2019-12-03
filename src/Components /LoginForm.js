@@ -1,13 +1,21 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {connect } from 'react-redux'
 import {Form, Alert, Button} from 'react-bootstrap'
+import login  from './../store/actions'
+import {setError as dispatchError} from './../store/index'
 
-function LoginForm({error, loading, getters}) {
+
+function LoginForm({error, loading,  dispatchError, login}) {
     const [hasError, setError] = useState(false);
-    const [user, setUserName] = useState('')
+    const [user, setUserName] = useState('');
     const [userId, setUserId] = useState('');
 
     //checking if the user has typed in a username grater than 3 of length
+    useEffect(()=>{
+        (!error) ? setError(false) : setError(true);
+    },[error])
+    
+
     let result = user.length < 3;
     const isValid= ()=> {
         return result ? result: loading
@@ -18,7 +26,9 @@ function LoginForm({error, loading, getters}) {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        }
+        login(user);
+    }
+
     return (
         <div className='login-form'>
             <h5 className='text-center'>Chat Login</h5>
@@ -54,16 +64,14 @@ function LoginForm({error, loading, getters}) {
 }
 
 const mapStateToProps = state =>{
-    console.log(state)
+    
     return {
         loading: state.loading,
         error: state.error,
     }
 }
-const mapDispatchToProps = (dispatch) => {
-    return{
-        getters: () => dispatch({type:'hasError'}),
-        setLoading: ()=> dispatch({type: 'loading'})
-    }
+const mapDispatchToProps = {
+        login: login,
+    
 }
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
