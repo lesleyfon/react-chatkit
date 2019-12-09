@@ -14,7 +14,7 @@ function MessageList({messages}) {
         <h4>Messages</h4>
         <hr/>
         <ScrollToBottom  id="chat-messages" className={`message-group ${ROOT_CSS}`}   >
-            {messages.length > 1 ? messages.map((message, i)=><div className='message' key={i}>
+            {messages.length >= 1 ? messages.map((message, i)=><div className='message' key={i}>
                 <div className="clearfix">
                     <h4 className="message-title">{ message.name }</h4>
                     <small className="text-muted float-right">@{message.username }</small>

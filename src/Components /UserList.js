@@ -24,7 +24,6 @@ function UserList({users, loading}) {
 }
 
 const mapStateToProps = state =>{
-    console.log(state)
     return {
         loading: state.loading,
         users: state.users

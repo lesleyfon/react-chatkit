@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Container, Row, Col} from 'react-bootstrap';
 import ChatNavBar from '../Components /ChatNavBar';
 import {connect} from 'react-redux';
@@ -6,7 +6,11 @@ import RoomsList from '../Components /RoomsList';
 import MessageList from '../Components /MessageList';
 import MessageForm from '../Components /MessageForm';
 import UserList from '../Components /UserList';
-function ChatDashBoard({loading}) {
+function ChatDashBoard({loading, loggedIn, history}) {
+    useEffect(()=>{
+        loggedIn ? history.push('/chat') : history.push('/login');
+    }, [])
+
     return (
         <div className='chat-dashboard'>
             <ChatNavBar/>
@@ -38,10 +42,10 @@ function ChatDashBoard({loading}) {
 }
 
 const mapStateToProps = state =>{
-    console.log(state)
     return {
         loading: state.loading,
         error: state.error,
+        loggedIn: state.loggedIn
     }
 }
 const mapDispatchToProps = (dispatch) => {

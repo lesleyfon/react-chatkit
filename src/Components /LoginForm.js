@@ -6,7 +6,7 @@ import login  from './../store/actions'
 
 function LoginForm({error, loading, login, loggedIn}) {
     const [hasError, setError] = useState(false);
-    const [user, setUserName] = useState('');
+    const [user, setUserName] = useState('hunt');
 
     //checking if the user has typed in a username grater than 3 of length
     useEffect(()=>{
@@ -62,7 +62,6 @@ function LoginForm({error, loading, login, loggedIn}) {
 }
 
 const mapStateToProps = state =>{
-    console.log(state)
     return {
         loading: state.loading,
         error: state.error,

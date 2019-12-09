@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { ListGroup, ListGroupItem } from 'react-bootstrap'
 
 function RoomsList({activeRoom,rooms, setActiveRoom}) {
-    console.log(activeRoom)
     return (
         <div className='room-list'>
            <h4>Channels</h4> 

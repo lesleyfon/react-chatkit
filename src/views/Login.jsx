@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 function Login({loggedIn, history}) {
   useEffect(()=>{
-    history.push('/chat');
+    loggedIn ? history.push('/chat') : history.push('/login');
   }, [loggedIn])
   return (
     <div className="login">
