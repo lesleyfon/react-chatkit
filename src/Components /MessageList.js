@@ -3,7 +3,7 @@ import ScrollToBottom from 'react-scroll-to-bottom';
 import {connect} from 'react-redux';
 import { css } from 'glamor'
 
-function MessageList({messages}) {
+function MessageList({messages, activeRoom}) {
     const ROOT_CSS = css({
         height: '600px',
         width: '100%',
@@ -11,7 +11,7 @@ function MessageList({messages}) {
     
     return (
         <div className="message-list">
-        <h4>Messages</h4>
+        <h4>Messages @ {activeRoom}</h4>
         <hr/>
         <ScrollToBottom  id="chat-messages" className={`message-group ${ROOT_CSS}`}   >
             {messages.length >= 1 ? messages.map((message, i)=><div className='message' key={i}>
@@ -33,7 +33,8 @@ function MessageList({messages}) {
 
 const mapStateToProps = state =>{
     return {
-        messages: state.messages
+        messages: state.messages,
+        activeRoom : state.activeRoom.id.name
     }
 }
 const mapDispatchToProps = (dispatch) => {

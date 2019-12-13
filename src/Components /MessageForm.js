@@ -1,15 +1,24 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import chatkit from './../chatkit.js'
+
 import { Form, Alert, FormGroup, FormControl, Button } from 'react-bootstrap'
 
-function MessageForm({user, error, sending, hasError}) {
-    const [messageText, setMessageText] = React.useState('')
+function MessageForm({user, error, sending,  activeRoom}) {
+
+    const [messageText, setMessageText] = React.useState('');
+    const [hasError, setHasError] = React.useState(false)
 
     const handleChange = e => {
-        setMessageText(e.target.value)
+         setMessageText(e.target.value)
     }
     const handleSubmit = (e) =>{
-        e.preventDefault()
+        e.preventDefault();
+        console.log(messageText);
+        
+        chatkit.sendMessage(messageText, activeRoom)
+        setMessageText('')
+
     }
     return (
         <div className="message-form ld-over">
@@ -39,18 +48,16 @@ function MessageForm({user, error, sending, hasError}) {
     )
 }
 const mapStateToProps = state =>{
-
     return {
         user: state.user,
         sending: state.sending,
         error: state.error,
-        activeRoom: state.activeRoom
+        activeRoom: state.activeRoom.id
     }
 }
-const mapDispatchToProps = (dispatch) => {
-    return{
-        getters: () => dispatch({type:'hasError'}),
-        setLoading: ()=> dispatch({type: 'loading'})
+const mapDispatchToProps = {
+        // getters: () => dispatch({type:'hasError'}),
+        // setLoading: ()=> dispatch({type: 'loading'})
     }
-}
+
 export default connect(mapStateToProps, mapDispatchToProps)(MessageForm)

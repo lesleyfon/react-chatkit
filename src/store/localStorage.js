@@ -7,7 +7,6 @@ export function localState(){
         }
         return JSON.parse(serializeState);
     } catch (err){
-        console.log('Error in LocalStorage.js')
         return undefined
     }
 }

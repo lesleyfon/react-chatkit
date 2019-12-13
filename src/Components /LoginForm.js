@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {connect } from 'react-redux'
 import {Form, Alert, Button} from 'react-bootstrap'
-import login  from './../store/actions'
+import actions  from './../store/actions'
 
 
 function LoginForm({error, loading, login, loggedIn}) {
@@ -69,7 +69,7 @@ const mapStateToProps = state =>{
     }
 }
 const mapDispatchToProps = {
-        login: login,
+        login: actions.login,
     
 }
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)

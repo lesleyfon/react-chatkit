@@ -1,34 +1,42 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import actions from './../store/actions'
 import { ListGroup, ListGroupItem } from 'react-bootstrap'
 
-function RoomsList({activeRoom,rooms, setActiveRoom}) {
+
+function RoomsList({activeRoom,rooms, changeRoom, userId}) {
+    console.log(userId)
     return (
         <div className='room-list'>
            <h4>Channels</h4> 
            <hr/>
            <ListGroup>
-               {activeRoom ? rooms.map((room, i)=> <ListGroupItem 
+               {activeRoom ? rooms.map((room, i)=> {
+
+               return <ListGroupItem 
                 key={i}
-                active = {activeRoom.id === room.id} 
-                href='#' onClick={()=>{setActiveRoom(room.id)}}> #{room.name}</ListGroupItem>): <p>No Active rooms Yet</p>}
+                className = {`${(activeRoom.id === room.id) ? 'active' : ''}`}
+                href='#' 
+                onClick={()=>{
+                    changeRoom(room, userId)
+                    }}> #{room.name}</ListGroupItem>})
+                    :
+                    <p>No Active rooms Yet</p>}
            </ListGroup>
         </div>
     )
 }
 
-const mapStateToProps = state =>{
-
+const mapStateToProps = state => {
+     
     return {
         rooms: state.rooms,
         activeRoom: state.activeRoom,
+        userId: state.user.username
     }
 }
-const mapDispatchToProps = (dispatch) => {
-    return{
-        getters: () => dispatch({type:'hasError'}),
-        setLoading: ()=> dispatch({type: 'loading'}),
-        setActiveRoom: (id)=>dispatch({type: 'SET_ACTIVE_ROOM', payload: id})
-    }
+const mapDispatchToProps = {    
+    changeRoom: actions.changeRoom
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(RoomsList);

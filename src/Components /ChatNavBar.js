@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar, NavItem, Nav, NavbarBrand} from 'react-bootstrap'
+import { Navbar, Nav, NavbarBrand} from 'react-bootstrap'
 import { connect } from 'react-redux'
 
 function ChatNavBar({user}) {
@@ -7,12 +7,12 @@ function ChatNavBar({user}) {
         <div>
             <Navbar id="chat-navbar" toggleable="md" bg="light" variant="info">
             <NavbarBrand href="#">
-            Vue Chat
+                ReactChatKit
             </NavbarBrand>
             
             <Nav className="ml-auto">
                 <Navbar.Text>{(user.length > 1) && user[0]} |</Navbar.Text>
-                <Navbar.Text href="#" active>Logout</Navbar.Text>
+                <Navbar.Text href="#" active='false'>Logout</Navbar.Text>
             </Nav>
             </Navbar>
         </div>
