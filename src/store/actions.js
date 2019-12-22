@@ -53,7 +53,7 @@ function login(userId) {
   return async (dispatch, getState) => {
     try {
       const { id, name } = await chatkit.subscribeToRoom(roomId.id, dispatch, userId);
-      console.log(id, name)
+      
       dispatch( {
           type: "SET_ACTIVE_ROOM",  
           payload :{

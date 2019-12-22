@@ -14,6 +14,9 @@ function RoomsList({activeRoom,rooms, changeRoom, userId}) {
                {activeRoom ? rooms.map((room, i)=> {
 
                return <ListGroupItem 
+                style={{
+                    'cursor': 'pointer'
+                }}
                 key={i}
                 className = {`${(activeRoom.id === room.id) ? 'active' : ''}`}
                 href='#' 

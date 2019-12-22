@@ -78,34 +78,26 @@ const SET_USER_TYPING = userTyping => {
   };
 };
 async function subscribeToRoom(roomid, dispatch, userId ) {
+
+  const chatManager = new ChatManager({
+    instanceLocator: INSTANCE_LOCATOR,
+    tokenProvider: new TokenProvider({ url: TOKEN_URL }),
+    userId
+  });
+
+  currentUser = await chatManager.connect();
   dispatch(CLEAR_CHAT_ROOM());
   activeRoom = await currentUser.subscribeToRoomMultipart({ roomId: roomid });
+  console.log(currentUser)
   setMembers(dispatch);
   SET_MESSAGES(dispatch, userId, roomid);
 
   return activeRoom;
 }
 
-// async function sendMessage(text, activeRoom){
-//     const chatManager = new ChatManager({
-//         instanceLocator: INSTANCE_LOCATOR,
-//         tokenProvider: new TokenProvider({ url: TOKEN_URL }),
-//         userId: signedInUser
-//      });
-//      currentUser = await chatManager.connect()
-//      console.log(activeRoom)
-//      const messageId = await currentUser.sendSimpleMessage({
-//          text,
-//          roomId: activeRoom
-//      })
-
-//      console.log(messageId)
-
-// }
 
 export default {
   connectUser,
   subscribeToRoom,
   CLEAR_CHAT_ROOM,
-//   sendMessage
 };
