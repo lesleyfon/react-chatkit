@@ -9,16 +9,19 @@ import thunk from 'redux-thunk';
 // import logger from 'redux-logger'
 import { reducer } from './store/reducer'
 
-import { localState, saveState } from './store/localStorage'
+import { 
+    localState, 
+    saveState 
+} from './store/localStorage'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 //loads state from local storage
 const persistedState = localState();
 const store = createStore(reducer, persistedState, applyMiddleware(thunk));
 
-// store.subscribe(throttle (()=>{
-//     saveState(store.getState())
-// }, 1000));
+store.subscribe(throttle (()=>{
+    saveState(store.getState())
+}, 1000));
 
 ReactDOM.render(
     <Provider store={store} >

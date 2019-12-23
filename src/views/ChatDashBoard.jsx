@@ -9,8 +9,8 @@ import UserList from '../Components /UserList';
 function ChatDashBoard({loading, loggedIn, history}) {
     useEffect(()=>{
         loggedIn ? history.push('/chat') : history.push('/login');
-    }, [])
-
+    }, [history, loggedIn])
+    
     return (
         <div className='chat-dashboard'>
             <ChatNavBar/>

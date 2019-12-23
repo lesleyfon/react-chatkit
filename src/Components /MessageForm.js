@@ -1,22 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import chatkit from './../chatkit.js'
+import  actions from './../store/actions'
 
 import { Form, Alert, FormGroup, FormControl, Button } from 'react-bootstrap'
 
-function MessageForm({user, error, sending,  activeRoom}) {
+function MessageForm({user, error, sending,  sendMessage}) {
 
     const [messageText, setMessageText] = React.useState('');
     const [hasError, setHasError] = React.useState(false)
 
     const handleChange = e => {
-         setMessageText(e.target.value)
+         setMessageText(e.target.value);
+
     }
     const handleSubmit = (e) =>{
         e.preventDefault();
-        console.log(messageText);
-        
-        chatkit.sendMessage(messageText, activeRoom)
+       sendMessage(messageText)
         setMessageText('')
 
     }
@@ -56,8 +56,7 @@ const mapStateToProps = state =>{
     }
 }
 const mapDispatchToProps = {
-        // getters: () => dispatch({type:'hasError'}),
-        // setLoading: ()=> dispatch({type: 'loading'})
+    sendMessage : actions.sendMessage
     }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessageForm)

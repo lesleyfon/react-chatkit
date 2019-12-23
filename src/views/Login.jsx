@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 function Login({loggedIn, history}) {
   useEffect(()=>{
     loggedIn ? history.push('/chat') : history.push('/login');
-  }, [loggedIn])
+  }, [loggedIn, history])
   return (
     <div className="login">
       <Jumbotron

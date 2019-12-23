@@ -50,7 +50,7 @@ function login(userId) {
 }
 
  function changeRoom(roomId, userId) {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
       const { id, name } = await chatkit.subscribeToRoom(roomId.id, dispatch, userId);
       
@@ -66,7 +66,27 @@ function login(userId) {
     }
   };
 }
+
+function sendMessage(message){
+  return async (dispatch)=> {
+    try {
+      dispatch({type: "SET_SENDING", payload: true});
+      const messageId = await chatkit.sendMessage(message, dispatch);
+      return messageId
+    } catch (error) {
+      dispatch({ type: "SET_ERROR", payload: error });
+    } finally {
+      dispatch({ type: "SET_SENDING", payload: false });
+    }
+  }
+}
+function  logOut() {
+    chatkit.disconnectUser();
+    window.localStorage.clear();
+}
 export default {
     login,
-    changeRoom
+    changeRoom,
+    sendMessage,
+    logOut
 }

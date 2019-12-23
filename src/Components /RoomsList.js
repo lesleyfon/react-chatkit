@@ -5,7 +5,6 @@ import { ListGroup, ListGroupItem } from 'react-bootstrap'
 
 
 function RoomsList({activeRoom,rooms, changeRoom, userId}) {
-    console.log(userId)
     return (
         <div className='room-list'>
            <h4>Channels</h4> 
